@@ -96,7 +96,7 @@
 		</div>
 
         <div style="margin:10px 0px;font-size:18px">
-		    <i class="fas fa-plus" style="color:blue"></i>  <a href="${pageContext.request.contextPath}/carconmany-register" >Thêm loại xe</a>
+		    <i class="fas fa-plus" style="color:blue"></i>  <a href="cartype_create.php" >Thêm loại xe</a>
 		</div>
 
 		<table class="table">
@@ -114,8 +114,8 @@
                                 <td style ="border:0.5px solid grey"><?php echo $loaixe["TRANGTHAI"] ?></td>
                             
                                 <td style ="border:0.5px solid grey;">
-                                    <a href="${pageContext.request.contextPath}/carconmany-edit?&MAHSX=${hangxe.getMAHSX()}" class="btn btn-warning btn-sm">Sửa</a>
-                                    <a href="${pageContext.request.contextPath}/carconmany-details?&MAHSX=${hangxe.getMAHSX()}" class="btn btn-info btn-sm">Chi tiết</a>
+                                    <a href="cartype_edit.php?&MALOAIXE=<?php echo $loaixe["MALOAIXE"] ?>" class="btn btn-warning btn-sm">Sửa</a>
+                                    <a href="cartype_details.php?&MALOAIXE=<?php echo $loaixe["MALOAIXE"] ?>" class="btn btn-info btn-sm">Chi tiết</a>
                                     
                                     <?php 
                                         if ($loaixe["TRANGTHAI"]  == "Công khai"){ ?>

@@ -96,7 +96,7 @@
 		</div>
 
         <div style="margin:10px 0px;font-size:18px">
-		    <i class="fas fa-plus" style="color:blue"></i>  <a href="${pageContext.request.contextPath}/carconmany-register" >Thêm hãng sản xuất</a>
+		    <i class="fas fa-plus" style="color:blue"></i>  <a href="carcompany_create.php" >Thêm hãng sản xuất</a>
 		</div>
 
 		<table class="table">
@@ -114,8 +114,8 @@
                                 <td style ="border:0.5px solid grey"><?php echo $hsx["TRANGTHAI"] ?></td>
                             
                                 <td style ="border:0.5px solid grey;">
-                                    <a href="${pageContext.request.contextPath}/carconmany-edit?&MAHSX=${hangxe.getMAHSX()}" class="btn btn-warning btn-sm">Sửa</a>
-                                    <a href="${pageContext.request.contextPath}/carconmany-details?&MAHSX=${hangxe.getMAHSX()}" class="btn btn-info btn-sm">Chi tiết</a>
+                                    <a href="carcompany_edit.php?&MAHSX=<?php echo $hsx["MAHSX"] ?>" class="btn btn-warning btn-sm">Sửa</a>
+                                    <a href="carcompany_details.php?&MAHSX=<?php echo $hsx["MAHSX"] ?>" class="btn btn-info btn-sm">Chi tiết</a>
                                     
                                     <?php 
                                         if ($hsx["TRANGTHAI"]  == "Công khai"){ ?>
