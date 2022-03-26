@@ -39,7 +39,7 @@
                             
                             <a href="">Số xe đã đăng: </a>
                            
-                                <div class="edit-tt"> <a href="${pageContext.request.contextPath}/userinfo-edit"><i class="far fa-edit"></i> Chỉnh sửa thông tin</a></div>
+                                <div class="edit-tt"> <a href="edit_account_current.php"><i class="far fa-edit"></i> Chỉnh sửa thông tin</a></div>
                                 <div class="edit-tt"> <a href=""><i class="far fa-edit"></i> Danh sách xe đăng ký bán</a></div>
                               
 
