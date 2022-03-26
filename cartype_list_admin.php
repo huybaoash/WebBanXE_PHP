@@ -88,11 +88,7 @@
             include_once("menu_admin.php");
         
         ?>
-		<p style="margin-top:10px;display:inline-flex">
-     
-			        <input type="text" name="searchString" value="" class="form-control" style="width:500px;margin-right:5px"  placeholder="Tìm kiếm theo tiêu đề"/>
-			        <button type="submit" class="btn btn-primary" style="padding:0px 30px"> <i class="fas fa-search"></i> </button>
-			    </p>
+
 		</div>
 
         <div style="margin:10px 0px;font-size:18px">
