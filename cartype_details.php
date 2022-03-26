@@ -48,6 +48,10 @@
         $loaixe = CarType::get_cartype($_GET["MALOAIXE"]);
         $loaixe = reset ($loaixe);
 
+        if (!$loaixe){
+            header("Location: cartype_list_admin.php");
+        }
+
     }
     else{
         header("Location: cartype_list_admin.php");

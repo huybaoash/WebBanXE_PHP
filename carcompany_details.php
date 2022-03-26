@@ -47,6 +47,9 @@
         $hsx = CarCompany::get_carcompany($_GET["MAHSX"]);
         $hsx = reset($hsx);
 
+        if (!$hsx){
+            header("Location: cartype_list_admin.php");
+        }
 
     }
     else{
