@@ -79,35 +79,21 @@
 
 
 	<div class="container tt">	
-		 <div id="menu">
-		    <ul class="menu-list" style = "display:flex;  list-style:none;">
-		        <li class="menu-item">
-		            <a href="${pageContext.request.contextPath}/contract-list-admin">Hợp đồng</a>
-		        </li>
-		
-		        <li class="menu-item">
-		            <a href="${pageContext.request.contextPath}/cartype-list-admin">Loại xe</a>
-		        </li>
-		
-		        <li class="menu-item">
-		            <a href="${pageContext.request.contextPath}/carconmpany-list-admin">Hãng sản xuất</a>
-		        </li>
-		
-		        <li class="menu-item">
-		            <a href="${pageContext.request.contextPath}/account-list">Người dùng</a>
-		        </li>
-		
-		        
-			    
-			    
-		    </ul>
-		    <p style="margin-top:10px;display:inline-flex">
+    <?php 
+       
+        
+
+        
+        include_once("menu_admin.php");
+        
+    ?>
+		<p style="margin-top:10px;display:inline-flex">
      
 			        <input type="text" name="searchString" value="" class="form-control" style="width:500px;margin-right:5px"  placeholder="Tìm kiếm theo tiêu đề"/>
 			        <button type="submit" class="btn btn-primary" style="padding:0px 30px"> <i class="fas fa-search"></i> </button>
 			    </p>
 		</div>
-		
+        
 		<table class="table">
 		    <tr style ="border:0.5px solid grey">
 		        <th style="width:10%; text-align:left;border:0.5px solid grey"> <label>Mã hợp đồng</label></th>
