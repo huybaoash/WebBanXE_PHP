@@ -63,7 +63,7 @@
 		       
 
 			  <?php if ($account_present["CHUCVU"] == "Người Quản Trị"){ ?>
-				<li><a href="${pageContext.request.contextPath}/contract-list-admin"><span class="fas fa-user-tie"></span><?php echo $account_present["CHUCVU"]; ?></a></li>
+				<li><a href="contract_list_admin.php"><span class="fas fa-user-tie"></span><?php echo $account_present["CHUCVU"]; ?></a></li>
 
 				<?php } ?>
 

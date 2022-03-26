@@ -148,17 +148,17 @@ class Contract
     }
     
 
-    public function show(){
+    public function lock(){
         $db = new Db(); 
-        $sql = "UPDATE `hopdong` SET `TRANGTHAI` = 'Công khai' WHERE `hopdong`.`MAHD` = '$this->MAHD'";
+        $sql = "UPDATE `hopdong` SET `TRANGTHAI` = 'Đã khóa' WHERE `hopdong`.`MAHD` = '$this->MAHD'";
         $result = $db -> query_execute($sql);
         return $result;
         
     }
 
-    public function hide(){
+    public function unlock(){
         $db = new Db(); 
-        $sql = "UPDATE `hopdong` SET `TRANGTHAI` = 'Ẩn' WHERE `hopdong`.`MAHD` = '$this->MAHD'";
+        $sql = "UPDATE `hopdong` SET `TRANGTHAI` = 'Công khai' WHERE `hopdong`.`MAHD` = '$this->MAHD'";
         $result = $db -> query_execute($sql);
         return $result;
         
