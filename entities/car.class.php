@@ -134,7 +134,7 @@ class Car
 
     public function add(){
         $db = new Db();
-       
+
         $sql = "INSERT INTO `xe` (`TENXE`, `NOIDUNGXE`, `HINHANH`, `BAOHANH`, `GIA`, `NAMSANXUAT`, `MALOAIXE`, `MAHSX`, `TRANGTHAI`) VALUES 
         ('$this->TENXE', 
         '$this->NOIDUNGXE', 

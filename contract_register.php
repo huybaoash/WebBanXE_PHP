@@ -45,16 +45,13 @@
 
 <?php 
      require_once("entities/cartype.class.php");
+     require_once("entities/car.class.php");
+     require_once("entities/contract.class.php");
      require_once("entities/carcompany.class.php");
      require_once("entities/account.class.php");
      require_once("entities/customer.class.php");
      require_once("must_login.php");
      
-    include_once("header.php");
-    
-
-    
-    include_once("menu.php");
     
     
     
@@ -69,9 +66,81 @@
 
     $customer_present = Customer::get_customer($account_present["MAKH"]);
     $customer_present = reset($customer_present);
+
+    if (isset($_POST["btnsubmit"])){
+ 
+ 
+ 
+        $TENXE = $_POST["TENXE"];
+        $MALOAIXE= $_POST["MALOAIXE"];
+        $MAHSX= $_POST["MAHSX"];
+        $NOIDUNGXE= htmlspecialchars($_POST["NOIDUNGXE"]);
+        $NOIDUNGHD= htmlspecialchars($_POST["NOIDUNGHD"]);
+        $BAOHANH= $_POST["BAOHANH"];
+        $NAMSANXUAT= $_POST["NAMSANXUAT"];
+        $GIAXE= $_POST["GIAXE"];
+        $DIADIEM = $_POST["DIADIEM"];
+        $fileHINHANH = $_FILES["image1"];
+        $NGAYGIO = date("Y")."-".date("m")."-".date("d")." ".date("h").":".date("i").":".date("s");
+
+        $car = new Car(-1,$BAOHANH,$NAMSANXUAT,$MALOAIXE,$MAHSX,$TENXE,$NOIDUNGXE,"","Công khai",$GIAXE);
+        $car -> add();
+
+        $lstnewCar = Car::toList();
+        $newcar = end($lstnewCar);
+        
+        
+        $hopdong = new Contract(-1,$account_present["MATK"],-1,$newcar["MAXE"],$NOIDUNGHD,"Công khai",$DIADIEM,$GIAXE,$NGAYGIO);
+        $hopdong -> add();
+
+        $lstnewhopdong = Contract::toList();
+        $newhopdong = end($lstnewhopdong);
+
+        
+
+        $file_temp = $fileHINHANH['tmp_name'];
+        $user_file = $fileHINHANH['name'];
+        
+        $parent = dirname(__DIR__);
+       
+        $file_path = $parent."\\WebBanXE\\images\\car\\hopdong".$newhopdong["MAHD"]."\\".$user_file;
+
+        if(!is_dir($parent."\\WebBanXE\\images\\car\\hopdong".$newhopdong["MAHD"]."\\"))
+        {
+            mkdir($parent."\\WebBanXE\\images\\car\\hopdong".$newhopdong["MAHD"]."\\",0777);
+        }
+
+        if (move_uploaded_file($file_temp,$file_path) == false){
+            return false;
+        }
+        
+        $HINHANH = "images/car/hopdong".$newhopdong["MAHD"]."/".$user_file;
+        
+
+        $car -> setMAXE($newcar["MAXE"]);
+        $car -> setHINHANH($HINHANH);
+        $car -> update();
+
+        header("Location: http://localhost/WebBanXE/");
+
+    }
+
 ?>
 
-<form action = "contract-register.htm" method="post" enctype='multipart/form-data'>
+<?php 
+    
+     
+    include_once("header.php");
+    
+
+    
+    include_once("menu.php");
+    
+    
+    
+?>
+
+<form method="post" enctype='multipart/form-data'>
 
 <div class="container tt" style ="padding-right: 0px;padding-left: 100px;">
 	<h2>LẬP HỢP ĐỒNG</h2>
@@ -152,7 +221,7 @@
 					
 					<div class="form-group">
                         <label for="NOIDUNGHD">Nôi dung hợp đồng</label>
-                        <textarea class = "form-control" cols="20" id="NOIDUNGHD" name="NOIDUNGHD" rows="20" disabled> </textarea>
+                        <textarea class = "form-control" cols="20" id="NOIDUNGHD" name="NOIDUNGHD" rows="20" readonly > </textarea>
                     </div>
 					
 					<div class="form-group">
@@ -198,7 +267,7 @@
                     <hr>
                     <div class="form-group">
                         <div style="text-align: right">
-                            <button type="submit" value="Thêm" id="CreateSP" class="btn btn-success">Thêm</button>
+                            <button type="submit" value="Thêm" name="btnsubmit" id="CreateSP" class="btn btn-success">Thêm</button>
                         </div>
                     </div>
                 </div>
