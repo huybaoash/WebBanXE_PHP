@@ -58,7 +58,7 @@
 
 
 		<ul class="nav navbar-nav navbar-right">
-		      <li><a href="userinfo.php"><span class="glyphicon glyphicon-user"></span> Xin chào <?php echo $account_present["TENTK"]; ?></a></li>
+		      <li><a href="details_current.php"><span class="glyphicon glyphicon-user"></span> Xin chào <?php echo $account_present["TENTK"]; ?></a></li>
 		      <li><a href="${pageContext.request.contextPath}/contract-cart?&MATK=${Account_present.getMATK()}"><span class="fa fa-cart-plus"></span> Hợp đồng</a></li>
 		       
 
