@@ -111,7 +111,7 @@
                 foreach($lstHD as $hopdong) {?>
                          <tr style ="border:0.5px solid grey">
                             <td style ="border:0.5px solid grey"><?php echo $hopdong["MAHD"] ?></td>
-                            <td style ="border:0.5px solid grey"><a href="${pageContext.request.contextPath}/otheruserinfo?&MATK= ${hopdong.getMATK()}"><?php echo $hopdong["TENTK"] ?></a></td>
+                            <td style ="border:0.5px solid grey"><a href="details_other.php?&MATK=<?php echo $hopdong["MATK"] ?>"><?php echo $hopdong["TENTK"] ?></a></td>
                             <td style ="border:0.5px solid grey"><?php echo $hopdong["MAXE"] ?></td>
                             <td style ="border:0.5px solid grey"><a href=""><?php echo $hopdong["TENXE"] ?></a></td>
                             <td style ="border:0.5px solid grey"><?php echo $hopdong["NGAYLAP"] ?></td>

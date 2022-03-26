@@ -28,7 +28,7 @@
                     <?php 
                         foreach ($lstHangXE as $hangxe) {?>
 
-                            <a href ="">
+                            <a href ="contract_list.php?&MAHSX=<?php echo $hangxe["MAHSX"]; ?>">
                                 <div id = "carcompany_item" class=" col-lg-4 col-md-4 col-sm-6 col-xs-12 " style = "border: 0.5pt solid black;height:180px">
                                     <div style = "text-align: center;">
                                         <img src="<?php echo $hangxe["HINHANH"]; ?>" alt="<?php echo $hangxe["TENHSX"]; ?>" style="width:140px;height:140px">

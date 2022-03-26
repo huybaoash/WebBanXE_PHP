@@ -45,7 +45,7 @@ include_once("header.php");
         cursor:pointer;
     }
 </style>
-
+<title>Trang chủ</title>
 <div class="container tt">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->

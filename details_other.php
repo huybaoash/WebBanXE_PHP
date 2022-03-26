@@ -5,11 +5,31 @@
 ?>
 
 <?php 
-    $account_present = Account::get_account($_COOKIE["account_present_MATK"]);
-    $account_present = reset($account_present);
+    $account_present_other = Account::get_account($_COOKIE["account_present_MATK"]);
+    $account_present_other = reset($account_present_other);
 
-    $customer_present = Customer::get_customer($account_present["MAKH"]);
+    $customer_present = Customer::get_customer($account_present_other["MAKH"]);
     $customer_present = reset($customer_present);
+
+    if (!isset($_GET["MATK"])){
+        header('Location: Location: http://localhost/WebBanXE/');
+
+    }else{
+
+
+        $account_present_other = Account::get_account($_GET["MATK"]);
+        $account_present_other = reset($account_present_other);
+        if ($account_present_other){
+            
+
+            $customer_present = Customer::get_customer($account_present_other["MAKH"]);
+            $customer_present = reset($customer_present);
+        }
+        else{
+            header('Location: Location: http://localhost/WebBanXE/');
+        }
+        
+    }
 ?>
 
 <?php 
@@ -26,7 +46,7 @@
 <div>
     <div class="main">
         <div class="topbar_">
-        	<a href=""> Đổi mật khẩu</a>
+    
         </div>
         <div class="row">
             <div class="col-md-4 mt-1">
@@ -34,13 +54,13 @@
                     <div class="card-body ">
                         <img src="~/images/Userlogo.png" alt="" class="" width="150">
                         <div class="mt-3">
-                            <h4><?php echo $account_present["TENTK"]; ?></h4>
+                            <h4><?php echo $account_present_other["TENTK"]; ?></h4>
 
                             
                             <a href="">Số xe đã đăng: </a>
                            
-                                <div class="edit-tt"> <a href="edit_account_current.php"><i class="far fa-edit"></i> Chỉnh sửa thông tin</a></div>
-                                <div class="edit-tt"> <a href="contract_list.php?&MATK=<?php echo $account_present["MATK"] ?>"><i class="far fa-edit"></i> Danh sách xe đăng ký bán</a></div>
+                                
+                                <div class="edit-tt"> <a href="contract_list.php?&MATK=<?php echo $account_present_other["MATK"] ?>"><i class="far fa-edit"></i> Danh sách xe đăng ký bán</a></div>
                               
 
                          
@@ -111,7 +131,7 @@
                                     <h4 style="font-weight:bold">Trạng thái</h4>
                                 </div>
                                 <div class="col-md-9 text-secondary">
-                                    <?php echo $account_present["TRANGTHAI"]; ?>
+                                    <?php echo $account_present_other["TRANGTHAI"]; ?>
                                 </div>
                             </div>
                             <hr>

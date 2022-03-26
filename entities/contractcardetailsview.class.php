@@ -1,4 +1,5 @@
 <?php 
+require_once('config/db.class.php');
 class ContractCarDetailsView
 {
     private $MATK;
@@ -73,7 +74,7 @@ class ContractCarDetailsView
     public static function toPublicList_byMATK($matk){
         $db = new Db();
        
-        $sql = "SELECT * FROM hopdong_xe WHERE `TRANGTHAI`= 'Công khai' WHERE MATK = $matk";
+        $sql = "SELECT * FROM hopdong_xe WHERE MATK = '$matk'";
         $result = $db -> select_to_array($sql);
         return $result;
         
@@ -82,7 +83,7 @@ class ContractCarDetailsView
     public static function toPublicList_byMALOAIXE($maloaixe){
         $db = new Db();
        
-        $sql = "SELECT * FROM hopdong_xe WHERE `TRANGTHAI`= 'Công khai' WHERE MALOAIXE = $maloaixe";
+        $sql = "SELECT * FROM hopdong_xe WHERE MALOAIXE = '$maloaixe'";
         $result = $db -> select_to_array($sql);
         return $result;
         
@@ -91,7 +92,7 @@ class ContractCarDetailsView
     public static function toPublicList_byMAHSX($mahsx){
         $db = new Db();
        
-        $sql = "SELECT * FROM hopdong_xe WHERE `TRANGTHAI`= 'Công khai' WHERE MAHSX = $mahsx";
+        $sql = "SELECT * FROM hopdong_xe WHERE MAHSX = '$mahsx'";
         $result = $db -> select_to_array($sql);
         return $result;
         

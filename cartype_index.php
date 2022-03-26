@@ -28,7 +28,7 @@
                     <?php 
                         foreach ($lstLoaiXE as $loaixe) {?>
 
-                            <a href ="">
+                            <a href ="contract_list.php?&MALOAIXE=<?php echo $loaixe["MALOAIXE"]; ?>">
                                 <div id = "carcompany_item" class=" col-lg-4 col-md-4 col-sm-6 col-xs-12 " style = "border: 0.5pt solid black;height:180px">
                                     <div style = "text-align: center;">
                                         <img src="<?php echo $loaixe["HINHANH"]; ?>" alt="<?php echo $loaixe["TENLOAIXE"]; ?>" style="width:140px;height:140px">
