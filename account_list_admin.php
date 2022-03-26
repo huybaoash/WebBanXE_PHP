@@ -39,32 +39,33 @@
     require_once("check_role_admin.php");
     require_once("entities/customer.class.php");
     require_once("entities/account.class.php");
-    require_once("entities/cartype.class.php");
+
   
 ?>
 
 <?php 
-    $lstLoaiXE = CarType::toList();
+    $lstAccount = Account::toList();
 
     if (isset($_POST["btnlock"])) {
-        $MALOAIXE = $_POST["MALOAIXE"];
+        $MATK = $_POST["MATK"];
         
-        $loaixe = CarType::get_cartype($MALOAIXE);
-        $loaixe = reset($loaixe);
+        $account = Account::get_Account($MATK);
+        $account = reset($account);
 
-        $loaixe = new CarType($loaixe["MALOAIXE"],$loaixe["TENLOAIXE"],$loaixe["HINHANH"],$loaixe["TRANGTHAI"]);
-        $loaixe -> hide();
+        $account = new Account($account["MATK"],$account["MAKH"],$account["TENTK"],$account["MATKHAU"],$account["HINHANH"],$account["TRANGTHAI"],$account["CHUCVU"]);
+        $account -> Block();
         header("Refresh:0");
     }
 
     if (isset($_POST["btnunlock"])) {
-        $MALOAIXE = $_POST["MALOAIXE"];
+        $MATK = $_POST["MATK"];
         
-        $loaixe = CarType::get_cartype($MALOAIXE);
-        $loaixe = reset($loaixe);
+        $account = Account::get_Account($MATK);
+        $account = reset($account);
 
-        $loaixe = new CarType($loaixe["MALOAIXE"],$loaixe["TENLOAIXE"],$loaixe["HINHANH"],$loaixe["TRANGTHAI"]);
-        $loaixe -> show();
+        $account = new Account($account["MATK"],$account["MAKH"],$account["TENTK"],$account["MATKHAU"],$account["HINHANH"],$account["TRANGTHAI"],$account["CHUCVU"]);
+
+        $account -> Unblock();
         header("Refresh:0");
     }
 
@@ -88,47 +89,41 @@
             include_once("menu_admin.php");
         
         ?>
-		<p style="margin-top:10px;display:inline-flex">
-     
-			        <input type="text" name="searchString" value="" class="form-control" style="width:500px;margin-right:5px"  placeholder="Tìm kiếm theo tiêu đề"/>
-			        <button type="submit" class="btn btn-primary" style="padding:0px 30px"> <i class="fas fa-search"></i> </button>
-			    </p>
-		</div>
+		
 
-        <div style="margin:10px 0px;font-size:18px">
-		    <i class="fas fa-plus" style="color:blue"></i>  <a href="${pageContext.request.contextPath}/carconmany-register" >Thêm loại xe</a>
-		</div>
+        
 
 		<table class="table">
 		    <tr style ="border:0.5px solid grey;border:0.5px solid grey">
-		        <th style="width:30%; text-align:left;border:0.5px solid grey"> <label>Tên loại xe</label></th>
+                <th style="width:30%; text-align:left;border:0.5px solid grey"> <label>Tên người dùng</label></th>
+		        <th style="width:20%; text-align:left;border:0.5px solid grey"> <label>Chức vụ</label></th>
 		        <th style="width:20%; text-align:left;border:0.5px solid grey"><label>Trạng thái</label></th>
 		        <th style="text-align:left;border:0.5px solid grey"><label>Tác vụ</label></th>
 		    </tr>
 
             <?php 
-                foreach($lstLoaiXE as $loaixe) {?>
+                foreach($lstAccount as $account) {?>
                          <tr style ="border:0.5px solid grey">
                             <form method="post" class = "form" style="margin: 0; padding: 0;" role = "form">
-                                <td style ="border:0.5px solid grey"><?php echo $loaixe["TENLOAIXE"] ?></td>
-                                <td style ="border:0.5px solid grey"><?php echo $loaixe["TRANGTHAI"] ?></td>
+                            <td style ="border:0.5px solid grey"><a href="${pageContext.request.contextPath}/otheruserinfo?&MATK= ${nguoidung.getMATK()}"><?php echo $account["TENTK"] ?></a></td>
+                            <td style ="border:0.5px solid grey"><?php echo $account["CHUCVU"] ?></td>
+                            <td style ="border:0.5px solid grey"><?php echo $account["TRANGTHAI"] ?></td>
                             
                                 <td style ="border:0.5px solid grey;">
-                                    <a href="${pageContext.request.contextPath}/carconmany-edit?&MAHSX=${hangxe.getMAHSX()}" class="btn btn-warning btn-sm">Sửa</a>
-                                    <a href="${pageContext.request.contextPath}/carconmany-details?&MAHSX=${hangxe.getMAHSX()}" class="btn btn-info btn-sm">Chi tiết</a>
+                                    
                                     
                                     <?php 
-                                        if ($loaixe["TRANGTHAI"]  == "Công khai"){ ?>
+                                        if ($account["TRANGTHAI"]  == "Đang hoạt động"){ ?>
                                             
-                                                <input type = "text" style="display: none;" name="MALOAIXE" value="<?php echo $loaixe["MALOAIXE"] ?>" />
-                                                <button type = "submit" name = "btnlock" class="btn btn-success btn-sm" onclick="lockTT()"><i class="fas fa-unlock-alt"></i> Ẩn</button>
+                                                <input type = "text" style="display: none;" name="MATK" value="<?php echo $account["MATK"] ?>" />
+                                                <button type = "submit" name = "btnlock" class="btn btn-success btn-sm" onclick="lockTT()"><i class="fas fa-unlock-alt"></i> Khóa tài khoản ?</button>
                                         
                                             
                                     <?php   } else {
-                                            if ($loaixe["TRANGTHAI"]  == "Ẩn") {?>
+                                            if ($account["TRANGTHAI"]  == "Đã khóa") {?>
                                                 
-                                                        <input type = "text" style="display: none;" name="MALOAIXE" value="<?php echo $loaixe["MALOAIXE"] ?>" />
-                                                        <button type = "submit" name = "btnunlock" class="btn btn-success btn-sm" onclick="unblockTT()"><i class="fas fa-unlock-alt"></i> Công khai</button>
+                                                        <input type = "text" style="display: none;" name="MATK" value="<?php echo $account["MATK"] ?>" />
+                                                        <button type = "submit" name = "btnunlock" class="btn btn-success btn-sm" onclick="unblockTT()"><i class="fas fa-unlock-alt"></i> Mở khóa</button>
                                                 
                                                 
                                     <?php    }?>
@@ -147,8 +142,9 @@
             ?>
 			
 		</table>
-		</div>
-	
+            </div>
+    </div>
+  	
 
 
 <script>
