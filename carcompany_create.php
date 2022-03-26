@@ -44,7 +44,45 @@
 
 <?php 
     
+    if (isset($_POST["btnsubmit"])){
+ 
+ 
+ 
+        $TENHSX = $_POST["TENHSX"];
+        
+        $fileHINHANH = $_FILES["image1"];
+        
 
+        $hsx = new CarCompany(-1,$TENHSX,"","Công khai");
+      
+
+        
+        $file_temp = $fileHINHANH['tmp_name'];
+        $user_file = $fileHINHANH['name'];
+        
+        $parent = dirname(__DIR__);
+       
+        $file_path = $parent."\\WebBanXE\\images\\carconmpany\\".$user_file;
+
+        if(!is_dir($parent."\\WebBanXE\\images\\carconmpany\\"))
+        {
+            mkdir($parent."\\WebBanXE\\images\\carconmpany\\",0777);
+        }
+
+        if (move_uploaded_file($file_temp,$file_path) == false){
+            return false;
+        }
+        
+        $HINHANH = "images/carconmpany/".$user_file;
+        
+
+        $hsx -> setHINHANH($HINHANH);
+        
+        $hsx -> add();
+
+        header("Location: carcompany_list_admin.php");
+
+    }
 
 
 ?>
@@ -88,7 +126,7 @@
 		
 		    <div>
 		        <div>
-		            <button type="submit" class="btn btn-primary" >Thêm</button>
+		            <button type="submit" class="btn btn-primary" name="btnsubmit" >Thêm</button>
 		            <a href="carcompany_list_admin.php" class="btn btn-primary"> Trở lại danh sách </a>
 		        </div>
 		    </div>

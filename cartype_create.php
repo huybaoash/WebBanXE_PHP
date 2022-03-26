@@ -44,7 +44,45 @@
 
 <?php 
     
+    if (isset($_POST["btnsubmit"])){
+ 
+ 
+ 
+        $TENLOAIXE = $_POST["TENLOAIXE"];
+        
+        $fileHINHANH = $_FILES["image1"];
+        
 
+        $loaixe = new CarType(-1,$TENLOAIXE,"","Công khai");
+      
+
+        
+        $file_temp = $fileHINHANH['tmp_name'];
+        $user_file = $fileHINHANH['name'];
+        
+        $parent = dirname(__DIR__);
+       
+        $file_path = $parent."\\WebBanXE\\images\\cartype\\".$user_file;
+
+        if(!is_dir($parent."\\WebBanXE\\images\\cartype\\"))
+        {
+            mkdir($parent."\\WebBanXE\\images\\cartype\\",0777);
+        }
+
+        if (move_uploaded_file($file_temp,$file_path) == false){
+            return false;
+        }
+        
+        $HINHANH = "images/cartype/".$user_file;
+        
+
+        $loaixe -> setHINHANH($HINHANH);
+        
+        $loaixe -> add();
+
+        header("Location: cartype_list_admin.php");
+
+    }
 
 
 ?>
@@ -88,7 +126,7 @@
 		
 		    <div>
 		        <div>
-		            <button type="submit" class="btn btn-primary">Thêm</button>
+		            <button type="submit" class="btn btn-primary" name="btnsubmit">Thêm</button>
 		            <a href="cartype_list_admin.php" class="btn btn-primary"> Trở lại danh sách </a>
 		        </div>
 		    </div>
