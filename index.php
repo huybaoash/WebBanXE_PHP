@@ -160,7 +160,7 @@ include_once("header.php");
                 foreach ($lstHD as $hopdong) { ?>
                 
                 <div class="row">
-                    <a href = "">
+                    <a href="contract_details.php?&MAHD=<?php echo $hopdong["MAHD"] ?>">
                     <div class="panel panel-default" style="width: 900px" >
                         <div class="panel panel-heading">
                             <?php echo $hopdong["TENXE"]; ?>

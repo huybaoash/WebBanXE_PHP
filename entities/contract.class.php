@@ -140,7 +140,7 @@ class Contract
 
     public function update(){
         $db = new Db(); 
-        $sql = "UPDATE `hopdong` SET `MANGUOIMUA` = '$this->MANGUOIMUA', `NOIDUNGHD` = '$this->NOIDUNGHD', `GIA` = '$this->GIA', `TRANGTHAI` = '$this->TRANGTHAI', `DIADIEM` = '$this->DIADIEM' WHERE `hopdong`.`MAHD` = '$this->MAHD'";
+        $sql = "UPDATE `hopdong` SET `NOIDUNGHD` = '$this->NOIDUNGHD', `GIA` = '$this->GIA', `TRANGTHAI` = '$this->TRANGTHAI', `DIADIEM` = '$this->DIADIEM' WHERE `hopdong`.`MAHD` = '$this->MAHD'";
      
         $result = $db -> query_execute($sql);
         return $result;

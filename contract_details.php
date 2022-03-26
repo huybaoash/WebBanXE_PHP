@@ -215,21 +215,10 @@
 
                     <div class="col-addr" style="text-align:right">
                         <p class="Update">Ngày đăng: <?php echo $hopdong["NGAYLAP"]; ?></p>
-							<c:choose>
-         
-						         <c:when test = "${Account_present.getMATK() == hopdong.getMATK()}">
-						            <a href="">Tin của bạn:</strong>[<i>Chỉnh sửa ngay</i>]</a>
-						         </c:when>
-						         
-						         
-						         
-						         <c:otherwise>
-						            
-					         	</c:otherwise>
-					      </c:choose>
+							
                           <?php 
                                 if ($account_present["MATK"] == $account["MATK"]) { ?>  
-                                    <a href="">Tin của bạn:</strong>[<i>Chỉnh sửa ngay</i>]</a>
+                                    <a href="contract_edit.php?&MAHD=<?php echo $hopdong["MAHD"]; ?>">Tin của bạn:</strong>[<i>Chỉnh sửa ngay</i>]</a>
                                 <?php  }
                            
                           ?>      
@@ -258,7 +247,7 @@
                 <h4 style="font-weight:bold">Nội dung</h4>
                 <div style="border: 1px solid rgba(220, 220, 221, 0.918); padding: 20px;background-color:rgba(220, 220, 221, 0.918);border-radius:4px;">
                     <p style="font-size:16px">
-                    <?php echo $car["NOIDUNGXE"]; ?>
+                    <?php echo nl2br($car['NOIDUNGXE']); ?>
                     </p>
                 </div>
                 </br>
