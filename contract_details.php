@@ -295,7 +295,7 @@
                     <div class="col-addr">
                         <div class="infor" style="display:flex;">
                             <p style="padding-right: 30px"><i class="fas fa-user-circle"></i> <?php echo $hopdong["TENTK"]; ?> </p>
-                            <a href="">Xem trang >></a>
+                            <a href="details_other.php?&MATK=<?php echo $hopdong["MATK"]; ?>">Xem trang >></a>
                         </div>
 
                         <div class="infor"><p><i class="fas fa-phone-square-alt"></i> <?php echo $customer["SDT"]; ?></p></div>
@@ -450,6 +450,6 @@
 
 
                 </div>
-         
+</div>
 
 <?php include_once("footer.php"); ?>

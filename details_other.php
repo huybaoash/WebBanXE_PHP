@@ -75,7 +75,7 @@
                                 <h4 style="font-weight:bold">Lịch sử bình luận</h4>
                             </div>
                             <div class="col-md-5 text-secondary">
-                                <a href=""> Xem thêm</a> <br />
+                                <a href="comment_of_user.php?&MATK=<?php echo $account_present_other["MATK"] ?>"> Xem thêm</a> <br />
 
                             </div>
                         </div>

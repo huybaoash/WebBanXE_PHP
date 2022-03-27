@@ -161,7 +161,7 @@ include_once("menu.php");
     <?php
                 
                 foreach ($lstHD_TOP4_OrderByDate as $hopdong) { ?>
-                        <a href="">
+                        <a href="contract_details.php?&MAHD=<?php echo $hopdong["MAHD"] ?>">
                             <div class="col-lg-3 col-md-6 col-sm-6" style = "padding-right: 0px;padding-left: 0px;">
                                 <div class="boxDiv">
                                     <div class="warp-layout_item">
