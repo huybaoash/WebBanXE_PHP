@@ -118,6 +118,8 @@
 <?php 
      
      require_once("entities/contractcardetailsview.class.php");
+	 require_once("entities/contractcart.class.php");
+
      require_once("entities/car.class.php");
      require_once("entities/account.class.php");
      require_once("entities/customer.class.php");
@@ -163,7 +165,53 @@
         
     }
 
-    
+    if (isset($_POST["btn_addtocart"])) {
+		if(!isset($_COOKIE["account_present_MATK"]))
+		{
+			header("Location: http://localhost/WebBanXE/login.php");
+		}
+		
+		$account_present = Account::get_account($_COOKIE["account_present_MATK"]);
+		$account_present = reset($account_present);
+
+		$hopdong = ContractCarDetailsView::get_contract_byMAHD($_POST["MAHD"]);
+		$hopdong = reset($hopdong);
+
+		
+
+		if (!$hopdong){
+			
+			header("Refresh:0");
+		}
+		else{
+			
+			if ($hopdong["MATK"] == $account_present["MATK"]){
+				header("Refresh:0");
+			}
+
+
+			$giohang = new ContractCart(-1,$hopdong["MAHD"],$account_present["MATK"]);
+			$lstgiohang = ContractCart::toList();
+			$dem=0;
+
+			foreach($lstgiohang as $item_giohang){
+				if ($item_giohang["MAHD"] == $giohang->getMAHD() && $item_giohang["MATK"] == $giohang->getMATK()){
+					$dem++;
+				}
+			}
+
+			if ($dem >= 1){
+				header("Refresh:0");
+			}
+			else{
+				$giohang -> add();
+			}
+			
+
+			
+		}
+		
+	}
 
     
 ?>
@@ -255,10 +303,14 @@
 				<div style="height: 240px;">
                 	<div class="inf-more" style="margin-top: 10px; ">
                 	<p style= "display:inline;">
-	                    <h4 style="font-weight:bold; width:200px; display:inline;padding-right:400px"> Thông tin sản phẩm </h4>
-                  			<button class ="btn btn-success" style = "padding-top:10px">
-                  				<i class="	fa fa-cart-plus"></i> THÊM VÀO GIỎ HỢP ĐỒNG
-                  			</button>      
+	                    
+						<form method="post" enctype='multipart/form-data'>
+							<h4 style="font-weight:bold; width:200px; display:inline;padding-right:400px"> Thông tin sản phẩm </h4>
+							<input value="<?php echo $hopdong["MAHD"]; ?>" name="MAHD" style ="display:none;" />
+							<button class ="btn btn-warning" style = "padding-top:10px" name = "btn_addtocart" type="submit">
+                  				<i class="fa fa-shopping-cart"></i> THÊM VÀO GIỎ HỢP ĐỒNG
+							</button>      
+						</form>
 	                
                     </p>
                     

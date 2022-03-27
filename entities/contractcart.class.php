@@ -44,6 +44,14 @@ class ContractCart
         return $result;
         
     }
+    public static function toList(){
+        $db = new Db();
+       
+        $sql = "SELECT * FROM giohopdong ";
+        $result = $db -> select_to_array($sql);
+        return $result;
+        
+    }
 
     public function add(){
         $db = new Db();

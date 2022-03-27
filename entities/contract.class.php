@@ -146,6 +146,15 @@ class Contract
         return $result;
         
     }
+
+    public function update_by_buyer(){
+        $db = new Db(); 
+        $sql = "UPDATE `hopdong` SET `MANGUOIMUA` = '$this->MANGUOIMUA' WHERE `hopdong`.`MAHD` = '$this->MAHD'";
+     
+        $result = $db -> query_execute($sql);
+        return $result;
+        
+    }
     
 
     public function lock(){
@@ -171,5 +180,7 @@ class Contract
         return $result;
         
     }
+
+
 }
 ?>

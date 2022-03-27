@@ -53,7 +53,7 @@ class Comment
     public static function toList_byMATK($MATK){
         $db = new Db();
        
-        $sql = "SELECT * FROM giohopdong WHERE `giohopdong`.`MATK` = '$MATK' ";
+        $sql = "SELECT * FROM binhluan WHERE `binhluan`.`MATK` = '$MATK' ";
         $result = $db -> select_to_array($sql);
         return $result;
         
@@ -61,17 +61,18 @@ class Comment
 
     public function add(){
         $db = new Db();
-        $sql = "INSERT INTO `giohopdong` (`MAHD`, `MATK`) VALUES 
-        ('$this->MAHD', 
+        $sql = "INSERT INTO `binhluan` (`NDBL`, `MAHD`, `MATK`) VALUES 
+        ('$this->NDBL',
+        '$this->MAHD', 
         '$this->MATK')";
         $result = $db -> query_execute($sql);
         return $result;
         
     }
 
-    public function remove($id){
+    public function remove($MABL){
         $db = new Db(); 
-        $sql = "DELETE FROM `giohopdong` WHERE `giohopdong`.`Id` = '$id' ";
+        $sql = "DELETE FROM `binhluan` WHERE `giohopdong`.`MABL` = '$MABL' ";
         $result = $db -> query_execute($sql);
         return $result;
         
