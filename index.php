@@ -114,7 +114,7 @@ include_once("header.php");
                     <div class="warp-layout_item">
                         <p>HYUNDAI TUCSON NEW 2022 KM KHỦNG</p>
 
-                        <div class="card" style="">
+                        <div class="card" >
 
             
                             <img src="zzz" alt="" style="position:relative" />
