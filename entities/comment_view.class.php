@@ -1,20 +1,22 @@
 <?php 
 require_once('config/db.class.php');
-class Comment
+class CommentView
 {
     private $MABL;
     private $NDBL;
     private $MAHD;
     private $MATK;
+    private $TENTK;
     private $NGAYDANG;
         
-    function  __construct($mABL, $nDBL, $mAHD,$maTK,$nGAYDANG)
+    function  __construct($mABL, $nDBL, $mAHD,$maTK,$tENTK,$nGAYDANG)
     {
         $this->MABL = $mABL;
         $this->NDBL = $nDBL;
         $this->MAHD = $mAHD;
         $this->MATK = $maTK;
         $this->NGAYDANG = $nGAYDANG;
+        $this->TENTK = $tENTK;
     }
     function getMABL()
     {
@@ -24,6 +26,16 @@ class Comment
     {
         $this->MABL = $mABL;
     }
+
+    function getMAHD()
+    {
+        return $this->MAHD;
+    }
+    function setMAHDL($mAHD)
+    {
+        $this->MAHD = $mAHD;
+    }
+
     function getNDBL()
     {
         return $this->NDBL;
@@ -40,6 +52,14 @@ class Comment
     {
         $this->MATK = $mATK;
     }
+    function getTENTK()
+    {
+        return $this->TENTK;
+    }
+    function setTENTK($tENTK)
+    {
+        $this->TENTK = $tENTK;
+    }
     function getNGAYDANG()
     {
         return $this->NGAYDANG;
@@ -53,7 +73,7 @@ class Comment
     public static function toList_byMATK($MATK){
         $db = new Db();
        
-        $sql = "SELECT * FROM binhluan WHERE `binhluan`.`MATK` = '$MATK' ";
+        $sql = "SELECT * FROM binhluan_ten WHERE `binhluan_ten`.`MATK` = '$MATK' ";
         $result = $db -> select_to_array($sql);
         return $result;
         
@@ -62,29 +82,12 @@ class Comment
     public static function toList_byMAHD($MAHD){
         $db = new Db();
        
-        $sql = "SELECT * FROM binhluan WHERE `binhluan`.`MAHD` = '$MAHD' ";
+        $sql = "SELECT * FROM binhluan_ten WHERE `binhluan_ten`.`MAHD` = '$MAHD' ";
         $result = $db -> select_to_array($sql);
         return $result;
         
     }
 
-    public function add(){
-        $db = new Db();
-        $sql = "INSERT INTO `binhluan` (`NDBL`, `MAHD`, `MATK`) VALUES 
-        ('$this->NDBL',
-        '$this->MAHD', 
-        '$this->MATK')";
-        $result = $db -> query_execute($sql);
-        return $result;
-        
-    }
-  
-    public function remove(){
-        $db = new Db(); 
-        $sql = "DELETE FROM `binhluan` WHERE `binhluan`.`MABL` = '$this->MABL' ";
-        $result = $db -> query_execute($sql);
-        return $result;
-        
-    }
+   
 }
 ?>

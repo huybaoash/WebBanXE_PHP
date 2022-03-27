@@ -119,7 +119,8 @@
      
      require_once("entities/contractcardetailsview.class.php");
 	 require_once("entities/contractcart.class.php");
-
+	 require_once("entities/comment_view.class.php");
+	 require_once("entities/comment.class.php");
      require_once("entities/car.class.php");
      require_once("entities/account.class.php");
      require_once("entities/customer.class.php");
@@ -138,6 +139,8 @@
     $account = Account::get_account(1);
     $car = Car::get_car(2);
 
+	$lstCMT = CommentView::toList_byMAHD(1);
+
     if (!isset($_GET["MAHD"])) {
         header('Location: Location: http://localhost/WebBanXE/');
     }
@@ -152,6 +155,8 @@
             header('Location: Location: http://localhost/WebBanXE/');
         }
         else{
+
+			$lstCMT = CommentView::toList_byMAHD($_GET["MAHD"]);
 
             $account = Account::get_account($hopdong["MATK"]);
             $account = reset($account);
@@ -209,6 +214,21 @@
 		
 	}
 
+	if (isset($_POST["btncomment"])) {
+		$NoidungBL = $_POST["Description"];
+
+		$binhluan = new Comment(-1,$NoidungBL,$hopdong["MAHD"],$account_present["MATK"],"");
+		$binhluan -> add();
+		header("Refresh:0");
+	}
+
+	if (isset($_POST["btndeletecmt"])) {
+		$MABL = $_POST["MABL"];
+
+		$binhluan = new Comment($MABL,"",$hopdong["MAHD"],$account_present["MATK"],"");
+		$binhluan -> remove();
+		header("Refresh:0");
+	}
     
 ?>
 
@@ -368,25 +388,37 @@
                     <div style="height:50px;border:1px solid #dfdfdf;padding-left:10px;padding-top:5px;background-color:#8785ea">
                         <h4 style="font-weight:bold;color:#e3e2e2">Bình luận</h4>
                     </div>
+					<?php 
+						foreach ($lstCMT as $binhluan){?>
+								<form method="post" enctype='multipart/form-data'>
+									<ul style="border:1px solid lightgray;padding-left:10px">
 
-                    <ul style="border:1px solid lightgray;padding-left:10px">
+											<br />
 
-                            <br />
+											<p style= "display: inline; "><b><?php echo $binhluan["TENTK"] ?></b>
+											<?php echo $binhluan["NGAYDANG"] ?>
+												<input value="<?php echo $binhluan["MABL"]; ?>" name="MABL" style ="display:none;" />
+												
+												<?php if ($binhluan["MATK"] == $account_present["MATK"]) {?>
+													<button type="submit" name = "btndeletecmt">Xóa</button>
 
-                            <p style= "display: inline; "><b>huybaoash@gmail.com</b>
-                            23/01/2022
-                            <a href="">Xóa</a>
-                           
-                            </p>
-                            
+												<?php } ?>
+												
+										
+											</p>
+											
 
-                                
-                            <br />
+												
+											<br />
 
-                            <p style= "padding-top:10px;">Nội dung 1,2,3,4,5,6,7,8,9</p>
+											<p style= "padding-top:10px;"><?php echo $binhluan["NDBL"] ?></p>
 
-                 
-                    </ul>
+								
+									</ul>
+								</form>
+					<?php 	}
+					?>
+                    
                     <hr />
                     
                     <?php 
@@ -399,13 +431,13 @@
                     <?php    }else {    ?>
 
                             <div class="CMT">
-		                        <form class="form-inline" action="">
+								<form method="post" enctype='multipart/form-data'>
 		                            <label for="cmt" style="margin-right: 5px;"><?php echo $account_present["TENTK"]; ?></label>
-		                            <input type="text" class="form-control" id="TinTucId" name="TinTucId" style="margin-right: 5px;display:none;" value="@Model.IdTinTucs"/>
+		                            
 		                            </br>
 		                            <textarea class="form-control text-box single-line" placeholder="Bình luận ..." id="Description" name="Description" style ="width: 100%;height:120px;" ></textarea>
 		
-		                            <button class="btn btn-primary" style="margin-top:5px;margin-left:95.5%">Gửi</button>
+		                            <button class="btn btn-primary" style="margin-top:5px;margin-left:95.5%" name="btncomment">Gửi</button>
 		                        </form>
 	                    	</div>
 
