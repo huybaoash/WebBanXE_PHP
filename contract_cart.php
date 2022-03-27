@@ -68,10 +68,13 @@
     }
 
     if (isset($_POST["btncancel"])){
+        $item = ContractCart::get_contractcart_item($_POST["Id"]);
+        $item = reset($item);
+
+        $giohang_item = new ContractCart($item["Id"],$item["MAHD"],$item["MATK"]);
  
- 
- 
-        
+        $giohang_item -> remove();
+        header("Refresh:0");
         
 
        
@@ -97,7 +100,7 @@
         <div class="container tt">	 
         
         
-        <form method="post" enctype='multipart/form-data'>
+        
             <table class="table">
                 <tr style ="border:0.5px solid grey">
                     <th style="width:20px; text-align:left;border:0.5px solid grey"> <label>Mã hợp đồng</label></th>
@@ -122,7 +125,12 @@
                             <td style ="border:0.5px solid grey"><?php echo $hopdong["NGAYLAP"] ?></td>
                             <td style ="border:0.5px solid grey"><?php echo $hopdong["DIADIEM"] ?></td>
                             <td style ="border:0.5px solid grey"><?php echo (number_format($hopdong["GIA"])." đ");$tongtien += $hopdong["GIA"]; ?></td>
-                            <td style ="border:0.5px solid grey"><button class ="btn btn-danger" name="btncancel">Hủy</button></td>
+                            <form method="post" enctype='multipart/form-data'>
+                                <td style ="border:0.5px solid grey">
+                                    <input value="<?php echo $giohang["Id"]; ?>" name="Id" style ="display:none;" />
+                                    <button class ="btn btn-danger" name="btncancel">Hủy</button>
+                                </td>
+                            </form>
                         
                     </tr>
 
@@ -142,8 +150,9 @@
                         <td style ="border:0.5px solid grey"></td>
                         <td style ="border:0.5px solid grey"></td>
                         <td style ="border:0.5px solid grey"><strong>Tổng tiền: <?php echo (number_format($tongtien)." đ"); ?></strong></td>
+                        <form method="post" enctype='multipart/form-data'>
                         <td style ="border:0.5px solid grey"><button class ="btn btn-success" name="btnsubmit">Thanh Toán</button></td>
-                        
+                        </form>
                         
                </tr>
               

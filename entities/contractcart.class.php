@@ -36,6 +36,13 @@ class ContractCart
         $this->MATK = $mATK;
     }
 
+    public static function get_contractcart_item($id){
+        $db = new Db();
+        $sql = "SELECT * FROM giohopdong WHERE `giohopdong`.`Id` = '$id'";        
+        $result = $db -> select_to_array($sql);
+        return $result;
+    }
+
     public static function toList_byMATK($MATK){
         $db = new Db();
        
@@ -63,9 +70,9 @@ class ContractCart
         
     }
 
-    public function remove($id){
+    public function remove(){
         $db = new Db(); 
-        $sql = "DELETE FROM `giohopdong` WHERE `giohopdong`.`Id` = '$id' ";
+        $sql = "DELETE FROM `giohopdong` WHERE `giohopdong`.`Id` = '$this->Id' ";
         $result = $db -> query_execute($sql);
         return $result;
         
