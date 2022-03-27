@@ -163,7 +163,7 @@ include_once("menu.php");
                 foreach ($lstHD_TOP4_OrderByDate as $hopdong) { ?>
                         <a href="contract_details.php?&MAHD=<?php echo $hopdong["MAHD"] ?>">
                             <div class="col-lg-3 col-md-6 col-sm-6" style = "padding-right: 0px;padding-left: 0px;">
-                                <div class="boxDiv">
+                                <div class="boxDiv" style = "height: auto;">
                                     <div class="warp-layout_item">
                                         <p style="height: 30px;"><?php echo $hopdong["TENXE"]; ?></p>
 
@@ -187,7 +187,7 @@ include_once("menu.php");
                                             </div>
                                             <div class="form-group" style="display:inline-flex;    margin-bottom: 0px;;    margin-top: 20px;">
                                             
-                                                <p class="" style="margin-right:10px; margin-left:0px;"><i class="far fa-clock"></i> <?php echo $hopdong["TENLOAIXE"]." - ".$hopdong["TENHSX"]." - ".$hopdong["DIADIEM"]; ?></p>
+                                                <p class="" style="margin-right:10px; margin-left:0px;height: 50px;"><i class="far fa-clock"></i> <?php echo $hopdong["TENLOAIXE"]." - ".$hopdong["TENHSX"]." - ".$hopdong["DIADIEM"]; ?></p>
                                                 
                                                 
                                                 
