@@ -62,10 +62,10 @@
                         <hr>
                         <div class="row">
                             <div class="col-md-7">
-                                <h4 style="font-weight:bold">Lịch sử hợp đồng</h4>
+                                <h4 style="font-weight:bold">Lịch sử giao dịch</h4>
                             </div>
                             <div class="col-md-5 text-secondary">
-                                <a href=""> Xem thêm</a>
+                                <a href="contract_list.php?&MATK_Done=<?php echo $account_present["MATK"] ?>"> Xem thêm</a>
                             </div>
                         </div>
                     </div>

@@ -11,36 +11,32 @@
     if (!isset($_GET["MALOAIXE"])){
         if (!isset($_GET["MAHSX"])){
             if (!isset($_GET["MATK"])){
-                header('Location: Location: http://localhost/WebBanXE/');
+                if (!isset($_GET["MATK_Done"])) {
+                    header('Location: Location: http://localhost/WebBanXE/');
+                }
+                else{
+                    $lstHD = ContractCarDetailsView::toDoneList_byMATK($_GET["MATK_Done"]);
+                    
+                }
         
             }else {
                 $lstHD = ContractCarDetailsView::toPublicList_byMATK($_GET["MATK"]);
-                if (!$lstHD){
-            
-                    header('Location: Location: http://localhost/WebBanXE/');
-                }
+                
             }
     
         }else {
             $lstHD = ContractCarDetailsView::toPublicList_byMAHSX($_GET["MAHSX"]);
-            if (!$lstHD){
             
-                header('Location: Location: http://localhost/WebBanXE/');
-            }
         }      
     }
     else {
         $lstHD = ContractCarDetailsView::toPublicList_byMALOAIXE($_GET["MALOAIXE"]);
-        if (!$lstHD){
-            
-            header('Location: Location: http://localhost/WebBanXE/');
-        }
+        
         
     }
 
     if (isset($_POST["btn_addtocart"])) {
-        if(!isset($_COOKIE["account_present_MATK"]))
-        {
+        if (!isset($_COOKIE["account_present_MATK"])) {
             header("Location: http://localhost/WebBanXE/login.php");
         }
         
@@ -52,36 +48,29 @@
 
         
 
-        if (!$hopdong){
+        
             
+        if ($hopdong["MATK"] == $account_present["MATK"]) {
             header("Refresh:0");
         }
-        else{
-            
-            if ($hopdong["MATK"] == $account_present["MATK"]){
-                header("Refresh:0");
-            }
 
+        else{    
 
-            $giohang = new ContractCart(-1,$hopdong["MAHD"],$account_present["MATK"]);
+            $giohang = new ContractCart(-1, $hopdong["MAHD"], $account_present["MATK"]);
             $lstgiohang = ContractCart::toList();
             $dem=0;
 
-            foreach($lstgiohang as $item_giohang){
-                if ($item_giohang["MAHD"] == $giohang->getMAHD() && $item_giohang["MATK"] == $giohang->getMATK()){
+            foreach ($lstgiohang as $item_giohang) {
+                if ($item_giohang["MAHD"] == $giohang->getMAHD() && $item_giohang["MATK"] == $giohang->getMATK()) {
                     $dem++;
                 }
             }
 
-            if ($dem >= 1){
+            if ($dem >= 1) {
                 header("Refresh:0");
-            }
-            else{
+            } else {
                 $giohang -> add();
             }
-            
-
-            
         }
         
     }
@@ -136,10 +125,17 @@
                         </div> 
                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                             <br/>
-                            <form method="post" enctype='multipart/form-data'>
-                                <input value="<?php echo $hopdong["MAHD"]; ?>" name="MAHD" style ="display:none;" />
-                                <button class="btn btn-warning" name = "btn_addtocart" type="submit"><i class="fa fa-shopping-cart" style="font-size:24px;"></i> Thêm vào giỏ hợp đồng</button>
-                            </form>
+                            <?php 
+                                if ($hopdong["TRANGTHAI"] == "Công khai") {?>
+                                            <form method="post" enctype='multipart/form-data'>
+                                                <input value="<?php echo $hopdong["MAHD"]; ?>" name="MAHD" style ="display:none;" />
+                                                <button class="btn btn-warning" name = "btn_addtocart" type="submit"><i class="fa fa-shopping-cart" style="font-size:24px;"></i> Thêm vào giỏ hợp đồng</button>
+                                            </form>
+                            <?php     }else {
+                            ?>
+                                                <button class="btn btn-warning" > Hoàn tất giao dịch</button>
+                            <?php     }
+                            ?>
                             <br/>
                         </div>    
                             

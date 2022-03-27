@@ -179,37 +179,33 @@
 
 		
 
-		if (!$hopdong){
+		
 			
-			header("Refresh:0");
-		}
-		else{
-			
-			if ($hopdong["MATK"] == $account_present["MATK"]){
+			if ($hopdong["MATK"] == $account_present["MATK"] ){
 				header("Refresh:0");
-			}
+			} else {
 
 
-			$giohang = new ContractCart(-1,$hopdong["MAHD"],$account_present["MATK"]);
-			$lstgiohang = ContractCart::toList();
-			$dem=0;
+				$giohang = new ContractCart(-1,$hopdong["MAHD"],$account_present["MATK"]);
+				$lstgiohang = ContractCart::toList();
+				$dem=0;
 
-			foreach($lstgiohang as $item_giohang){
-				if ($item_giohang["MAHD"] == $giohang->getMAHD() && $item_giohang["MATK"] == $giohang->getMATK()){
-					$dem++;
+				foreach($lstgiohang as $item_giohang){
+					if ($item_giohang["MAHD"] == $giohang->getMAHD() && $item_giohang["MATK"] == $giohang->getMATK()){
+						$dem++;
+					}
 				}
-			}
 
-			if ($dem >= 1){
-				header("Refresh:0");
-			}
-			else{
-				$giohang -> add();
-			}
+				if ($dem >= 1){
+					header("Refresh:0");
+				}
+				else{
+					$giohang -> add();
+				}
 			
 
 			
-		}
+			}
 		
 	}
 
@@ -304,13 +300,25 @@
                 	<div class="inf-more" style="margin-top: 10px; ">
                 	<p style= "display:inline;">
 	                    
-						<form method="post" enctype='multipart/form-data'>
-							<h4 style="font-weight:bold; width:200px; display:inline;padding-right:400px"> Thông tin sản phẩm </h4>
-							<input value="<?php echo $hopdong["MAHD"]; ?>" name="MAHD" style ="display:none;" />
-							<button class ="btn btn-warning" style = "padding-top:10px" name = "btn_addtocart" type="submit">
-                  				<i class="fa fa-shopping-cart"></i> THÊM VÀO GIỎ HỢP ĐỒNG
-							</button>      
-						</form>
+						<?php 
+                                if ($hopdong["TRANGTHAI"] == "Công khai") {?>
+                                            <form method="post" enctype='multipart/form-data'>
+												<h4 style="font-weight:bold; width:200px; display:inline;padding-right:400px"> Thông tin sản phẩm </h4>
+												<input value="<?php echo $hopdong["MAHD"]; ?>" name="MAHD" style ="display:none;" />
+												<button class ="btn btn-warning" style = "padding-top:10px" name = "btn_addtocart" type="submit">
+													<i class="fa fa-shopping-cart"></i> THÊM VÀO GIỎ HỢP ĐỒNG
+												</button>      
+											</form>
+                            <?php     }else {
+                            ?>
+                                                <h4 style="font-weight:bold; width:200px; display:inline;padding-right:400px"> Thông tin sản phẩm </h4>
+												<button class ="btn btn-warning" style = "padding-top:10px">
+													Đã hoàn tất giao dịch
+												</button>    
+                            <?php     }
+                        ?>
+
+						
 	                
                     </p>
                     

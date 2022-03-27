@@ -23,37 +23,35 @@ require_once("entities/account.class.php");
     
             
     
-            if (!$hopdong){
+            
                 
-                header("Refresh:0");
-            }
-            else{
-                
-                if ($hopdong["MATK"] == $account_present["MATK"]){
-                    header("Refresh:0");
-                }
-    
-    
-                $giohang = new ContractCart(-1,$hopdong["MAHD"],$account_present["MATK"]);
-                $lstgiohang = ContractCart::toList();
-                $dem=0;
-    
-                foreach($lstgiohang as $item_giohang){
-                    if ($item_giohang["MAHD"] == $giohang->getMAHD() && $item_giohang["MATK"] == $giohang->getMATK()){
-                        $dem++;
-                    }
-                }
-    
-                if ($dem >= 1){
+                if ($hopdong["MATK"] == $account_present['MATK']){
                     header("Refresh:0");
                 }
                 else{
-                    $giohang -> add();
+                    $giohang = new ContractCart(-1,$hopdong["MAHD"],$account_present["MATK"]);
+                    $lstgiohang = ContractCart::toList();
+                    $dem=0;
+        
+                    foreach($lstgiohang as $item_giohang){
+                        if ($item_giohang["MAHD"] == $giohang->getMAHD() && $item_giohang["MATK"] == $giohang->getMATK()){
+                            $dem++;
+                        }
+                    }
+        
+                    if ($dem >= 1){
+                        header("Refresh:0");
+                    }
+                    else{
+                        $giohang -> add();
+                    }
                 }
+    
+                
                 
     
                 
-            }
+           
             
         }
 ?>

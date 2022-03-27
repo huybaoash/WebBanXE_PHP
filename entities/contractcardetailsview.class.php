@@ -80,6 +80,17 @@ class ContractCarDetailsView
         
     }
 
+    public static function toDoneList_byMATK($matk){
+        $db = new Db();
+       
+        $sql = "SELECT * FROM hopdong_xe_nguoimua WHERE MANGUOIMUA = '$matk' AND `TRANGTHAI`= 'Hoàn tất giao dịch'";
+        $result = $db -> select_to_array($sql);
+        return $result;
+        
+    }
+
+    
+
     public static function toPublicList_byMALOAIXE($maloaixe){
         $db = new Db();
        

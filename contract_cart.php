@@ -59,7 +59,23 @@
     if (isset($_POST["btnsubmit"])){
  
  
- 
+        foreach ($lsthopdong as $hopdong) {
+            foreach ($lstContractCart as $giohang) {
+                if ($hopdong["MAHD"] == $giohang["MAHD"]) {
+                    $hopdong_update = new Contract($hopdong["MAHD"],$hopdong["MANGUOIBAN"],$account_present["MATK"],$hopdong["MAXE"],"","Công khai",$DIADIEM,$GIAXE,$NGAYGIO);
+                    $hopdong_update -> update_by_buyer();
+                    $hopdong_update -> done();
+
+                    $item = ContractCart::get_contractcart_item($giohang["Id"]);
+                    $item = reset($item);
+
+                    $giohang_item = new ContractCart($item["Id"],$item["MAHD"],$item["MATK"]);
+            
+                    $giohang_item -> remove();
+                    header("Location: index.php");
+                }
+            }
+        }
         
         
 
@@ -71,11 +87,15 @@
         $item = ContractCart::get_contractcart_item($_POST["Id"]);
         $item = reset($item);
 
+        if (!$item){
+            header("Refresh:0");
+        }
+
         $giohang_item = new ContractCart($item["Id"],$item["MAHD"],$item["MATK"]);
  
         $giohang_item -> remove();
-        header("Refresh:0");
         
+        header("Refresh:0");
 
        
 

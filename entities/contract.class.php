@@ -121,6 +121,15 @@ class Contract
         
     }
 
+    public static function toDoneList_byMANGUOIMUA($MANGUOIMUA){
+        $db = new Db();
+       
+        $sql = "SELECT * FROM hopdong WHERE `TRANGTHAI`= 'Hoàn tất giao dịch' AND 'MANGUOIMUA' = '$MANGUOIMUA'";
+        $result = $db -> select_to_array($sql);
+        return $result;
+        
+    }
+
     public function add(){
         $db = new Db();
        
