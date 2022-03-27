@@ -59,6 +59,15 @@ class Comment
         
     }
 
+    public static function toList_byMAHD($MAHD){
+        $db = new Db();
+       
+        $sql = "SELECT * FROM binhluan WHERE `binhluan`.`MAHD` = '$MAHD' ";
+        $result = $db -> select_to_array($sql);
+        return $result;
+        
+    }
+
     public function add(){
         $db = new Db();
         $sql = "INSERT INTO `binhluan` (`NDBL`, `MAHD`, `MATK`) VALUES 

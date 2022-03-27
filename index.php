@@ -8,7 +8,7 @@ require_once("entities/account.class.php");
 <?php       
         $lstLoaiXE = CarType::toPublicList();
         $lstHD = ContractCarDetailsView::toPublicList();
-
+        $lstHD_TOP4_OrderByDate = ContractCarDetailsView::toPublicList_Limit4_OrderByDate();
         if (isset($_POST["btn_addtocart"])) {
             if(!isset($_COOKIE["account_present_MATK"]))
             {
@@ -105,9 +105,7 @@ include_once("menu.php");
 
 		<ol class="carousel-indicators">
 			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-			<c:forEach var = "i" begin = "1" end = "${lstLoaiXE.size()-1}">
-				
-			</c:forEach>
+			
 
             <?php
                 
@@ -160,47 +158,52 @@ include_once("menu.php");
     
     <div class="row" id="RowTT">
     <h3>DÒNG XE MỚI NHẤT</h3>
-   
-        <a href="">
-            <div class="col-lg-3 col-md-6 col-sm-6" style = "padding-right: 0px;padding-left: 0px;">
-                <div class="boxDiv">
-                    <div class="warp-layout_item">
-                        <p>HYUNDAI TUCSON NEW 2022 KM KHỦNG</p>
+    <?php
+                
+                foreach ($lstHD_TOP4_OrderByDate as $hopdong) { ?>
+                        <a href="">
+                            <div class="col-lg-3 col-md-6 col-sm-6" style = "padding-right: 0px;padding-left: 0px;">
+                                <div class="boxDiv">
+                                    <div class="warp-layout_item">
+                                        <p style="height: 30px;"><?php echo $hopdong["TENXE"]; ?></p>
 
-                        <div class="card" >
+                                        <div class="card" >
 
-            
-                            <img src="zzz" alt="" style="position:relative" />
-                            <img src="~/images/unnamed.gif" style="position:absolute; top:1px; right:1px; height:40px; width:40px">
-                          
-                            <div class="card-body">
-                                <label class="card-text">2022 - Mới - Bảo hành 36 tháng</label>
-                            </div>
-
-                            <div class="form-group" style="display:inline-flex;    margin-bottom: 5px;">
-                             
-                                    <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> 100.000.000đ</p>
-                                
-								
-                                
-                                
-                            </div>
-                            <div class="form-group" style="display:inline-flex;    margin-bottom: 0px;;    margin-top: 20px;">
-                             
-                                 <p class="" style="margin-right:10px; margin-left:0px"><i class="far fa-clock"></i> Honda - Thành phố Hồ Chí Minh</p>
-								
-                                
-                                
-                            </div>
                             
-                        </div>
+                                            <img src="<?php echo $hopdong["HINHANH"]; ?>" alt="" style="position:relative" />
+                                            
+                                        
+                                            <div class="card-body" style="padding-left:  10px;">
+                                                <label class="card-text"><?php echo $hopdong["NAMSANXUAT"]." - Bảo hành ".$hopdong["BAOHANH"]." tháng"; ?></label>
+                                            </div>
+
+                                            <div class="form-group" style="display:inline-flex;    margin-bottom: 5px;">
+                                            
+                                                    <p class="Coins-index" style="margin-right:20px; margin-left:10px"><i class="fas fa-coins"></i> <?php echo (number_format($hopdong["GIA"])." đ"); ?></p>
+                                                
+                                                
+                                                
+                                                
+                                            </div>
+                                            <div class="form-group" style="display:inline-flex;    margin-bottom: 0px;;    margin-top: 20px;">
+                                            
+                                                <p class="" style="margin-right:10px; margin-left:0px;"><i class="far fa-clock"></i> <?php echo $hopdong["TENLOAIXE"]." - ".$hopdong["TENHSX"]." - ".$hopdong["DIADIEM"]; ?></p>
+                                                
+                                                
+                                                
+                                            </div>
+                                            
+                                        </div>
 
 
 
-                    </div>
-                </div>
-            </div>
-        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                
+                <?php } ?>  
+        
 
 
 	</div>

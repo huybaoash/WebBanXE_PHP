@@ -71,6 +71,15 @@ class ContractCarDetailsView
         
     }
 
+    public static function toPublicList_Limit4_OrderByDate(){
+        $db = new Db();
+       
+        $sql = "SELECT * FROM hopdong_xe WHERE `TRANGTHAI`= 'Công khai' ORDER BY MAHD desc LIMIT 4";
+        $result = $db -> select_to_array($sql);
+        return $result;
+        
+    }
+
     public static function toPublicList_byMATK($matk){
         $db = new Db();
        
