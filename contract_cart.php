@@ -71,7 +71,7 @@
 
                     $giohang_item = new ContractCart($item["Id"],$item["MAHD"],$item["MATK"]);
             
-                    $giohang_item -> remove();
+                    $giohang_item -> remove_allcart_hasMAHD();
                     header("Location: index.php");
                 }
             }

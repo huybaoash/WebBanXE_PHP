@@ -77,5 +77,13 @@ class ContractCart
         return $result;
         
     }
+
+    public function remove_allcart_hasMAHD(){
+        $db = new Db(); 
+        $sql = "DELETE FROM `giohopdong` WHERE `giohopdong`.`MAHD` = '$this->MAHD' ";
+        $result = $db -> query_execute($sql);
+        return $result;
+        
+    }
 }
 ?>
