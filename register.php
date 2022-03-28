@@ -6,6 +6,7 @@ $xacnhan = false;
         $cmnd_trung = false;
         $sdt_trung = false;
         $email_trung = false;
+        $username_trung = false;
         $dem_nhapsai = 0;
 ?> 
 <?php 
@@ -50,6 +51,14 @@ $xacnhan = false;
                  $dem_nhapsai ++;
              }
          }
+
+         foreach ($lstAccount as $account_item){
+            if ($account_item["TENTK"] == $UserName) {
+                $username_trung = true;
+                $dem_nhapsai ++;
+            }
+            
+        }
          
 
       
@@ -161,6 +170,17 @@ $xacnhan = false;
             ?>
                 
                 <label for="array_push" class="text-danger" style="margin-left:0px">Email đã có người dùng</label>
+                 <br />   
+
+        <?php }
+        
+    ?>
+
+    <?php 
+        if ($username_trung){
+            ?>
+                
+                <label for="array_push" class="text-danger" style="margin-left:0px">Tên tài khoản đã có người dùng</label>
                  <br />   
 
         <?php }
