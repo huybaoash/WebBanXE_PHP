@@ -127,12 +127,22 @@
     
 ?>
 
-<?php 
+<?php
+
+$account_present = Account::get_account(6);
+$account_present = reset($account_present);
+
+$customer_present = Customer::get_customer(3);
+$customer_present = reset($customer_present);
+
+	if (isset($_COOKIE["account_present_MATK"])) {
     $account_present = Account::get_account($_COOKIE["account_present_MATK"]);
     $account_present = reset($account_present);
 
     $customer_present = Customer::get_customer($account_present["MAKH"]);
     $customer_present = reset($customer_present);
+	}
+
 
     $hopdong = ContractCarDetailsView::get_contract_byMAHD(1);
     $customer = Customer::get_customer(1);

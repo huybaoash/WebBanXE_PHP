@@ -133,6 +133,7 @@
 		</div>
 		</form>
 		</div>
+    </div>
 
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 

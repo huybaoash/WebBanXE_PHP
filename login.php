@@ -72,6 +72,7 @@
     }
     .containerLG {
         width: 400px;
+        height: auto;
         margin: auto;
         border: 1px solid rgb(201, 199, 199);
         border-radius: 10px;

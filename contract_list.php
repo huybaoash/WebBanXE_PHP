@@ -2,6 +2,8 @@
      
      require_once("entities/contractcardetailsview.class.php");
      require_once("entities/contractcart.class.php");
+     require_once("entities/cartype.class.php");
+     require_once("entities/carcompany.class.php");
      require_once("entities/account.class.php");
 ?>
 
@@ -16,22 +18,30 @@
                 }
                 else{
                     $lstHD = ContractCarDetailsView::toDoneList_byMATK($_GET["MATK_Done"]);
-                    
+                    $taikhoan = Account::get_account($_GET["MATK_Done"]);
+                    $taikhoan = reset($taikhoan);
+                    $title = "Danh sách xe đã thanh toán của ".$taikhoan["TENTK"];
                 }
         
             }else {
                 $lstHD = ContractCarDetailsView::toPublicList_byMATK($_GET["MATK"]);
-                
+                $taikhoan = Account::get_account($_GET["MATK"]);
+                $taikhoan = reset($taikhoan);
+                $title = "Danh sách xe đăng ký bán của ".$taikhoan["TENTK"];
             }
     
         }else {
             $lstHD = ContractCarDetailsView::toPublicList_byMAHSX($_GET["MAHSX"]);
-            
+            $hsx = CarCompany::get_carcompany($_GET["MAHSX"]);
+            $hsx = reset($hsx);
+            $title = "Danh sách xe thuộc hãng ".$hsx["TENHSX"];
         }      
     }
     else {
         $lstHD = ContractCarDetailsView::toPublicList_byMALOAIXE($_GET["MALOAIXE"]);
-        
+        $loaixe = CarType::get_cartype($_GET["MALOAIXE"]);
+        $loaixe = reset($loaixe);
+        $title = "Danh sách xe thuộc ".$loaixe["TENLOAIXE"];
         
     }
 
@@ -92,7 +102,7 @@
    
    <div class="container tt">
 		<title>Danh sách tài khoản</title>
-		<h1>DS giao dịch hợp đồng</h1>
+		<h1><?php echo $title ?> </h1>
 		
 		<h3>Tất cả</h3>
         <?php

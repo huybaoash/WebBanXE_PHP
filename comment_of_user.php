@@ -46,6 +46,7 @@
     
 ?>
 <div class="container tt" style ="padding-right: 0px;padding-left: 100px;">
+<h1>Lịch sử bình luận </h1>
 <?php 
     foreach ($lstCMT as $binhluan){ 
         $hopdong = ContractCarDetailsView::get_contract_byMAHD($binhluan["MAHD"]);$hopdong = reset($hopdong);

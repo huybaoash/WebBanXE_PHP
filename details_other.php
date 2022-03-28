@@ -1,7 +1,7 @@
 <?php require_once("must_login.php");
     require_once("entities/customer.class.php");
     require_once("entities/account.class.php");
-    
+    require_once("entities/contract.class.php");
 ?>
 
 <?php 
@@ -10,6 +10,8 @@
 
     $customer_present = Customer::get_customer($account_present_other["MAKH"]);
     $customer_present = reset($customer_present);
+
+    $lstHD;
 
     if (!isset($_GET["MATK"])){
         header('Location: Location: http://localhost/WebBanXE/');
@@ -21,7 +23,7 @@
         $account_present_other = reset($account_present_other);
         if ($account_present_other){
             
-
+            $lstHD = Contract::toList_byMATK($account_present_other["MATK"]);
             $customer_present = Customer::get_customer($account_present_other["MAKH"]);
             $customer_present = reset($customer_present);
         }
@@ -57,7 +59,7 @@
                             <h4><?php echo $account_present_other["TENTK"]; ?></h4>
 
                             
-                            <a href="">Số xe đã đăng: </a>
+                            <a href="">Số xe đã đăng: <?php echo count($lstHD) ?></a>
                            
                                 
                                 <div class="edit-tt"> <a href="contract_list.php?&MATK=<?php echo $account_present_other["MATK"] ?>"><i class="far fa-edit"></i> Danh sách xe đăng ký bán</a></div>

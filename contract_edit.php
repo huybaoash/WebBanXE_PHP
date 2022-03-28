@@ -191,7 +191,7 @@
 <form method="post" enctype='multipart/form-data'>
 
 <div class="container tt" style ="padding-right: 0px;padding-left: 100px;">
-	<h2>LẬP HỢP ĐỒNG</h2>
+	<h2>CHỈNH SỬA HỢP ĐỒNG BÁN XE</h2>
             <hr>
             
             

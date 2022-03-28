@@ -112,6 +112,15 @@ class Contract
         
     }
 
+    public static function toList_byMATK($MATK){
+        $db = new Db();
+       
+        $sql = "SELECT * FROM hopdong WHERE `MANGUOIBAN` = '$MATK'";
+        $result = $db -> select_to_array($sql);
+        return $result;
+        
+    }
+
     public static function toPublicList(){
         $db = new Db();
        

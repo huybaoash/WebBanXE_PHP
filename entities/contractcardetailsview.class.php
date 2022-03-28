@@ -83,7 +83,7 @@ class ContractCarDetailsView
     public static function toPublicList_byMATK($matk){
         $db = new Db();
        
-        $sql = "SELECT * FROM hopdong_xe WHERE MATK = '$matk'";
+        $sql = "SELECT * FROM hopdong_xe WHERE MATK = '$matk' AND `TRANGTHAI`= 'Công khai'";
         $result = $db -> select_to_array($sql);
         return $result;
         
@@ -103,7 +103,7 @@ class ContractCarDetailsView
     public static function toPublicList_byMALOAIXE($maloaixe){
         $db = new Db();
        
-        $sql = "SELECT * FROM hopdong_xe WHERE MALOAIXE = '$maloaixe'";
+        $sql = "SELECT * FROM hopdong_xe WHERE MALOAIXE = '$maloaixe' AND `TRANGTHAI`= 'Công khai'";
         $result = $db -> select_to_array($sql);
         return $result;
         
@@ -112,7 +112,7 @@ class ContractCarDetailsView
     public static function toPublicList_byMAHSX($mahsx){
         $db = new Db();
        
-        $sql = "SELECT * FROM hopdong_xe WHERE MAHSX = '$mahsx'";
+        $sql = "SELECT * FROM hopdong_xe WHERE MAHSX = '$mahsx' AND `TRANGTHAI`= 'Công khai'";
         $result = $db -> select_to_array($sql);
         return $result;
         

@@ -17,7 +17,7 @@
 .footer {
     background-color: #24262b;
     padding: 40px 0;
-    margin-top:25%;
+    margin-top:15%;
    
   
 }
